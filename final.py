@@ -14,6 +14,11 @@ mycursor=mydb.cursor()
 creds = 'tempfile.temp'
 
 
+app_table = ["app_id","app_name","description","cost","size","c_id"]
+dev_table = ["dev_id","dev_name","website","app_id"]
+top_chart_table = ["app_id","rating","d_count"]
+show_all_table = ["app_id","app_name","description","cost","size","c_id"]
+
 def put(*args):
     cid=cc_id.get()
     categoryname=ccategory_name.get()
