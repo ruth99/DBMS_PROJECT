@@ -86,59 +86,54 @@ def Login():
 	rootA.mainloop()
 
 
-
 def option(x):
 	if x==list0[0]:
-		utilities()
+		Table('utilities', 0, app_table)
 	elif x==list0[1]:
-		books()
+		Table('books', 1, app_table)
 	elif x==list0[2]:
-		education()
+		Table('education', 2, app_table)
 	elif x==list0[3]:
-		entertainment()
+		Table('entertainment', 3, app_table)
 	elif x==list0[4]:
-		finanace()
+		Table('finance', 4, app_table)
 	elif x==list0[5]:
-		food()
+		Table('food', 5, app_table)
 	elif x==list0[6]:
-		health()
+		Table('health', 6, app_table)
 	elif x==list0[7]:
-		kids()
+		Table('kids', 7, app_table)
 	elif x==list0[8]:
-		lifestyle()
+		Table('lifestyle', 8, app_table)
 	elif x==list0[9]:
-		music()
+		Table('music', 9, app_table)
 	elif x==list0[10]:
-		games()
+		Table('games', 10, app_table)
 	elif x==list0[11]:
-		social()
+		Table('social', 11, app_table)
 	elif x==list0[12]:
-		productivity()
+		Table('productivity', 12, app_table)
 
-def utilities():
-	root1=Tk()
-	mycursor.execute("SELECT * FROM app where c_id=1")
+		
+def Table(title, c_id, table):
+	root = Tk()
+	root.title(title)
+	mycursor.execute("SELECT * FROM app WHEREww c_id="+str(c_id))
 	row=mycursor.fetchall()
 	mydb.commit()
 
-	treeview=ttk.Treeview(root1)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
+	treeview=ttk.Treeview(root)
+	treeview["column"] = table
+	treeview["show"] = "headings"
 
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
+	for i in table:
+		treeview.heading(i, text = i)
+		
+	for i in range(len(table)):
+		if (i == 0) or (i == 5):
+			treeview.column('#'+str(i+1), width = 90)
+		else:
+			treeview.column('#'+str(i+1), stretch=YES, minwidth=50, width=120)
 	treeview.config(height=len(row))
 	treeview.pack()
 
@@ -146,398 +141,8 @@ def utilities():
 	for r in row:
 		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
 		index+=1
-	root1.mainloop()
-
-def books():
-	root2=Tk()
-	root2.title("books")
-	#root2.geometry("1000x1000")
-	mycursor.execute("SELECT * FROM app where c_id=2")
-	row=mycursor.fetchall()
-	mydb.commit()
-
-	treeview=ttk.Treeview(root2)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-
-
-	root2.mainloop()
-
-def education():
-	root3=Tk()
-	root3.title("education")
-	mycursor.execute("SELECT * FROM app where c_id=3")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root3)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root3.mainloop()
-
-def entertainment():
-	root4=Tk()
-	root4.title("entertainment")
-	mycursor.execute("SELECT * FROM app where c_id=4")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root4)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root4.mainloop()
-
-def finanace():
-	root5=Tk()
-	root5.title("finanace")
-	mycursor.execute("SELECT * FROM app where c_id=5")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root5)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root5.mainloop()
-
-def food():
-	root6=Tk()
-	root6.title("food")
-	mycursor.execute("SELECT * FROM app where c_id=6")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root6)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root6.mainloop()
-
-def health():
-	root7=Tk()
-	root7.title("health and fitness")
-	mycursor.execute("SELECT * FROM app where c_id=7")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root7)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root7.mainloop()
-
-def kids():
-	root8=Tk()
-	root8.title("kids")
-	mycursor.execute("SELECT * FROM app where c_id=8")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root8)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root8.mainloop()
-
-def lifestyle():
-	root9=Tk()
-	root9.title("lifestyle")
-	mycursor.execute("SELECT * FROM app where c_id=9")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root9)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root9.mainloop()
-
-def music():
-	root10=Tk()
-	root10.title("music")
-	mycursor.execute("SELECT * FROM app where c_id=10")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root10)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root10.mainloop()
-
-def games():
-	root11=Tk()
-	root11.title("games")
-	mycursor.execute("SELECT * FROM app where c_id=11")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root11)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root11.mainloop()
-
-def social():
-	root12=Tk()
-	root12.title("social networking")
-	mycursor.execute("SELECT * FROM app where c_id=12")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root12)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-
-	root12.mainloop()
-
-def productivity():
-	root13=Tk()
-	root13.title("productivity")
-	mycursor.execute("SELECT * FROM app where c_id=13")
-	row=mycursor.fetchall()
-	mydb.commit()
-	treeview=ttk.Treeview(root13)
-	treeview["column"]=["app_id","app_name","description","cost","size","c_id"]
-	treeview["show"]="headings"
-
-	treeview.heading("app_id",text="app_id")
-	treeview.heading("app_name",text="app_name")
-	treeview.heading("description",text="description")
-	treeview.heading("cost",text="cost")
-	treeview.heading("size",text="size")
-	treeview.heading("c_id",text="c_id")
-
-	treeview.column('#1',width=90)
-	treeview.column('#2',stretch=YES, minwidth=50, width=120)
-	treeview.column('#3',stretch=YES, minwidth=50, width=120)
-	treeview.column('#4',stretch=YES, minwidth=50, width=120)
-	treeview.column('#5',stretch=YES, minwidth=50, width=120)
-	treeview.column('#6',width=90)
-
-	treeview.config(height=len(row))
-	treeview.pack()
-	index=0
-	for r in row:
-		treeview.insert('','end',text=str(index),values=(r[0],r[1],r[2],r[3],r[4],r[5]))
-		index+=1
-	root13.mainloop()
-
+	root.mainloop()		
+		
 def insert_details():
 	appid=StringVar()
 	appname=StringVar()
