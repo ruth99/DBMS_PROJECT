@@ -168,7 +168,7 @@ def CheckLogin():
 
 		Label(root,width=3,height=20,bg="black").place(x=340,y=100)
 		Button(bottomF,text="SHOW ALL ;)",width=30,command=show_all,relief=GROOVE).place(x=200,y=430)
-
+		
 		root.mainloop()
 	else:
 		r = Tk()
@@ -249,7 +249,6 @@ def delete_details():
 
 
 def dev_details():
-
 	root99=Tk()
 	root99.title("DEVELOPER DETAILS")
 	root99.resizable(False,False)
@@ -284,7 +283,6 @@ def top_chart():
 	treeview["show"]="headings"
 	for i in treeview["column"]:
 		treeview.heading(i, text = i)
-
 	for i in range(len(treeview["column"])):
 		treeview.column('#'+str(i+1), stretch = YES, minwidth = 50, width = 120)
 	treeview.config(height=len(row))
@@ -309,7 +307,6 @@ def show_all():
 	treeview["show"]="headings"
 	for i in treeview["column"]:
 		treeview.heading(i, text = i)
-
 	for i in range(len(treeview["column"])):
 		treeview.column('#'+str(i+1), stretch=YES, minwidth=50, width=120)
 	treeview.config(height=len(row))
